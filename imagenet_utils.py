@@ -13,7 +13,7 @@ def load_imagenet_class_names_to_index_map():
     with open(os.path.join(os.path.expanduser('~'), "imagenet_class_index.json"), "r") as f:
         data = json.load(f)
 
-    return {v[0]: int(k) for k, v in data.items()}
+    return {v[1]: int(k) for k, v in data.items()}
 
 def get_class_index_from_filepath(filepath):
     class_name = filepath.split("/")[-2]
