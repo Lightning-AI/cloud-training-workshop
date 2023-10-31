@@ -80,7 +80,7 @@ class ImageNetLightningModel(LightningModule):
         return torch.utils.data.DataLoader(
             train_data, 
             batch_size=self.batch_size,
-            num_workers=16,
+            num_workers=self.workers,
             pin_memory=True,
             drop_last=True,
             persistent_workers=True
