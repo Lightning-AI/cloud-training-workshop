@@ -79,7 +79,7 @@ class ImageNetLightningModel(LightningModule):
 
         return torch.utils.data.DataLoader(
             train_data, 
-            batch_size=256,
+            batch_size=self.batch_size,
             num_workers=16,
             pin_memory=True,
             drop_last=True,
@@ -97,7 +97,7 @@ class ImageNetLightningModel(LightningModule):
 
         return torch.utils.data.DataLoader(
             val_data, 
-            batch_size=500,
+            batch_size=self.batch_size,
             num_workers=4,
             pin_memory=True,
             drop_last=False,
@@ -110,14 +110,14 @@ class ImageNetLightningModel(LightningModule):
 
 # Train:
 if __name__ == "__main__":
-    model = ImageNetLightningModel()
+    model = ImageNetLightningModel(batch_size=256)
     trainer = Trainer(
         max_epochs=90,
         accelerator="auto",
-        precision=32, 
+        precision=32, # "16-mixed", "bf16-mixed", "transformer-engine", "64-true”,  "bf16-true”
         devices="auto",
-        strategy="auto",
-        profiler=None, 
+        strategy="auto",  # "fsdp" "deepspeed_stage_x" "deepspeed_stage_2_offload" "ddp"
+        profiler=None, #"advanced", "simple"
         logger=False,
         callbacks=[
             TQDMProgressBar(refresh_rate=10),
