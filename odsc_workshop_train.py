@@ -114,9 +114,9 @@ if __name__ == "__main__":
     trainer = Trainer(
         max_epochs=90,
         accelerator="auto",
-        precision=32, #"16-mixed", "bf16-mixed", "transformer-engine", "64-true"
+        precision=32, # "16-mixed", "bf16-mixed", "transformer-engine", "64-true”,  "bf16-true”
         devices="auto",
-        strategy="auto", # "16-mixed", "bf16-mixed", "transformer-engine", "64-true”,  "bf16-true”
+        strategy="auto",  # "fsdp" "deepspeed_stage_x" "deepspeed_stage_2_offload" "ddp"
         profiler=None, #"advanced", "simple"
         logger=False,
         callbacks=[
