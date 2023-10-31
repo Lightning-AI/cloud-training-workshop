@@ -110,7 +110,7 @@ class ImageNetLightningModel(LightningModule):
 
 # Train:
 if __name__ == "__main__":
-    model = ImageNetLightningModel(batch_size=256)
+    model = ImageNetLightningModel(batch_size=256, workers=4)
     trainer = Trainer(
         max_epochs=90,
         accelerator="auto",
