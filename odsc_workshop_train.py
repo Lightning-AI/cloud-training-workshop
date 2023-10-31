@@ -79,7 +79,7 @@ class ImageNetLightningModel(LightningModule):
 
         return torch.utils.data.DataLoader(
             train_data, 
-            batch_size=256,
+            batch_size=self.batch_size,
             num_workers=16,
             pin_memory=True,
             drop_last=True,
@@ -97,7 +97,7 @@ class ImageNetLightningModel(LightningModule):
 
         return torch.utils.data.DataLoader(
             val_data, 
-            batch_size=500,
+            batch_size=self.batch_size,
             num_workers=4,
             pin_memory=True,
             drop_last=False,
@@ -110,7 +110,7 @@ class ImageNetLightningModel(LightningModule):
 
 # Train:
 if __name__ == "__main__":
-    model = ImageNetLightningModel()
+    model = ImageNetLightningModel(batch_size=256)
     trainer = Trainer(
         max_epochs=90,
         accelerator="auto",
