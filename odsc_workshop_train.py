@@ -113,11 +113,11 @@ if __name__ == "__main__":
     model = ImageNetLightningModel()
     trainer = Trainer(
         max_epochs=90,
-        accelerator="auto", # "fsdp" "deepspeed_stage_x" "deepspeed_stage_2_offload" "ddp"
-        precision=32, # "16-mixed", "bf16-mixed", "transformer-engine", "64-true"
+        accelerator="auto",
+        precision=32, 
         devices="auto",
         strategy="auto",
-        profiler=None, #"advanced" "simple"
+        profiler=None, 
         logger=False,
         callbacks=[
             TQDMProgressBar(refresh_rate=10),
